@@ -6,7 +6,7 @@ SpriteAtlas:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Charlie_Easy
+  m_Name: FrontUI
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -39,30 +39,30 @@ SpriteAtlas:
       blockOffset: 1
       allowAlphaSplitting: 0
       enableRotation: 0
-      enableTightPacking: 1
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: cd15b35e2c01a2c41be5bbd83e59b064, type: 3}
+    - {fileID: 102900000, guid: 961f867d5f976394ca5ceb14c5882478, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 40e7c73cc4acb45499888e6443b417ac, type: 2}
-  - {fileID: 21300000, guid: 403d0496543ba004f808c32c4330e5df, type: 2}
-  - {fileID: 21300000, guid: 86349fdd7ba4d05438afbbb846933aa2, type: 2}
-  - {fileID: 21300000, guid: d499e7729fa136140bc7002ca6f1b2a6, type: 2}
-  - {fileID: 21300000, guid: c757359f5d95a014792646f3e8b00a64, type: 2}
-  - {fileID: 21300000, guid: d31e204724a22cc4b90c19537d501e9f, type: 2}
+  - {fileID: 21300000, guid: 8243a201c89522b46b69e866d7f19285, type: 2}
+  - {fileID: 21300000, guid: 97ef02e7a114e464da2a106cd7cea676, type: 2}
+  - {fileID: 21300000, guid: 103ce4bb9a1e4b441aa6101a25ffb09c, type: 2}
+  - {fileID: 21300000, guid: 90548dd23ab8fbe42b424d38497a28e9, type: 2}
+  - {fileID: 21300000, guid: f32b12c5c1e880b47a4b0bdc4a7925e8, type: 2}
+  - {fileID: 21300000, guid: 81593f98573162e44a0b6a57166f4079, type: 2}
   m_PackedSpriteNamesToIndex:
-  - CircusCharlie_Jump
-  - CircusCharlie_LionRun1
-  - CircusCharlie_LionRun2
-  - CircusCharlie_Die
-  - CircusCharlie_PlayerRun1
-  - CircusCharlie_PlayerRun2
+  - ui-small-buttons_LeftDown
+  - ui-small-buttons_JumpUp
+  - ui-small-buttons_JumpDown
+  - ui-small-buttons_RightUp
+  - ui-small-buttons_LeftUp
+  - ui-small-buttons_RightDown
   m_RenderDataMap: {}
-  m_Tag: Charlie_Easy
+  m_Tag: FrontUI
   m_IsVariant: 0
