@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1735,7 +1735,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CircusCharlie_26: 1118594505
+      CircusCharlie_20: -887682959
       CircusCharlie_21: -380899720
       CircusCharlie_58: -1403876119
       CircusCharlie_19: -1204643953
@@ -1810,7 +1810,7 @@ TextureImporter:
       CircusCharlie_64: -1385451675
       CircusCharlie_7: -1591084527
       CircusCharlie_18: -512394577
-      CircusCharlie_20: -887682959
+      CircusCharlie_26: 1118594505
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

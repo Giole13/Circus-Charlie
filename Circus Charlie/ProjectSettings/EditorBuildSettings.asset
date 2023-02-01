@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/01.CircusCharlie/Scenes/02.DifficultySelect.unity
-    guid: 561381f66827a3d4987787b35d0f47e3
+    path: Assets/01.CircusCharlie/Scenes/01.Title.unity
+    guid: c6892f8e3b8a0b743b29fe5fce8300d0
+  - enabled: 1
+    path: Assets/01.CircusCharlie/Scenes/02.PlayGame_Easy.unity
+    guid: de46694c637c86e4fa699879d609f63c
   m_configObjects: {}
