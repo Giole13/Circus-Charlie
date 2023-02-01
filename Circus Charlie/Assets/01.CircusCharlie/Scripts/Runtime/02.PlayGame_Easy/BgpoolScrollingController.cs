@@ -32,13 +32,13 @@ public class BgpoolScrollingController : MonoBehaviour
         {
             // 배경을 움직이는 로직 ( 왼쪽
             backGroundPool.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
-            obstaclesRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+            //fireHoopObjRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
         }
         else if (backGroundRight || Input.GetKey(KeyCode.D))
         {
             // 배경을 움직이는 로직 ( 오른쪽
             backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
-            obstaclesRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            //obstaclesRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
 
         }
 

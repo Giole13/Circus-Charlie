@@ -22,7 +22,7 @@ public class FireHoopController : MonoBehaviour
         // 움직이는 속도
         moveSpeed = transform.parent.GetComponent<ObstaclesPoolingController>().
             hoopSpeed;
-        
+
         // 자신의 렉트 트랜스폼
         fireHoopObjRect = GetComponent<RectTransform>();
 
@@ -50,6 +50,7 @@ public class FireHoopController : MonoBehaviour
             //    playerRectTransform.anchoredPosition + (Vector2.right * 800f);
             //playerRectTransform.anchoredPosition = parentFireHoopObjRect.anchoredPosition +
             //    (Vector2.right * 800f);
+            fireHoopObjRect.anchoredPosition = Vector2.right * 800f;
 
             // 플레이어 렉트 트랜스폼 가져와서 그 위치에 +준 자리에 초기화
 
@@ -58,13 +59,18 @@ public class FireHoopController : MonoBehaviour
     }
 
 
-    //private void OnTriggerEnter2D(Collider2D collision)
+    //public void MoveHoopleft()
     //{
-    //    if (collision.transform.tag == "Player")
-    //    {
-    //        PlayerController player = collision.transform.GetComponent<PlayerController>();
-    //        player.Die();
-    //    }
+    //    fireHoopObjRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
     //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Player")
+        {
+            PlayerController player = collision.transform.GetComponent<PlayerController>();
+            player.Die();
+        }
+    }
 
 }

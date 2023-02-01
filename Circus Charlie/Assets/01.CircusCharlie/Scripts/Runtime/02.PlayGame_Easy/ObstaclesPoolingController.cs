@@ -49,8 +49,8 @@ public class ObstaclesPoolingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        createTime += Time.deltaTime;
         ObstaclesRect.anchoredPosition = Vector2.zero;
+        createTime += Time.deltaTime;
 
         // 랜덤으로 시간마다 후프를 켜주는 함수
         if (hoopCreateTime < createTime)
@@ -62,6 +62,6 @@ public class ObstaclesPoolingController : MonoBehaviour
             createTime = 0f;
         }
 
-
+        
     }
 }
