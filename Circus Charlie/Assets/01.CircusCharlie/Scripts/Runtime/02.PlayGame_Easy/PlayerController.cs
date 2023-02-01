@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D playerRigid2D = default;
     public float jumpPower = 300f;
 
+    public bool gameOver = false;
+
     private bool isGroundTouch = false;
 
 
@@ -22,7 +24,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnClickJump();
+        }
     }
 
 
@@ -49,7 +54,7 @@ public class PlayerController : MonoBehaviour
     //! 플레이어가 죽는 함수
     public void Die()
     {
-
+        gameOver = true;
         //playerRigid2D.velocity = Vector2.zero;
         Debug.Log("사망했습니다!");
         Time.timeScale = 0;

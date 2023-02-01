@@ -40,9 +40,14 @@ public class BackGroundMaker : MonoBehaviour
             --remainingMeter;
         }
 
+
+        // 골인 프리팹 불러와서 위치시켜주는 로직
         GameObject prefab = Resources.Load<GameObject>("Prefabs/GoalStage");
         GameObject goalStage = Instantiate(prefab, allBG.transform);
         goalStage.SetLocalPos(350f, -170f, 0);
+
+
+
 
 
         backGround.SetActive(false);

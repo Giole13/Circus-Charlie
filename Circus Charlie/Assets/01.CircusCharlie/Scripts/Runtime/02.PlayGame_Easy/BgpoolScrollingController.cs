@@ -6,13 +6,21 @@ public class BgpoolScrollingController : MonoBehaviour
 {
     public float backGroundMoveSpeed = 10f;
 
-    private bool backGroundLeft = false;
-    private bool backGroundRight = false;
+    protected bool backGroundLeft = false;
+    protected bool backGroundRight = false;
     private RectTransform backGroundPool = default;
+    private RectTransform obstaclesRect = default;
+
+    private GameObject obstacles = default;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject main = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME);
+        obstacles = main.FindChildObj(GioleData.OBSTACLES_OBJ_NAME);
+
+        obstaclesRect = obstacles.GetRect();
         backGroundPool = GetComponent<RectTransform>();
     }
 
@@ -20,15 +28,20 @@ public class BgpoolScrollingController : MonoBehaviour
     void Update()
     {
 
-        if (backGroundLeft)
+        if (backGroundLeft || Input.GetKey(KeyCode.A))
         {
+            // 배경을 움직이는 로직 ( 왼쪽
             backGroundPool.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+            obstaclesRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
         }
-        else if (backGroundRight)
+        else if (backGroundRight || Input.GetKey(KeyCode.D))
         {
+            // 배경을 움직이는 로직 ( 오른쪽
             backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            obstaclesRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
 
         }
+
     }
 
     //! 왼쪽 방향키 눌렀을 때
