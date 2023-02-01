@@ -8,7 +8,7 @@ public static partial class GioleData
     public const string PLAYER_OBJ_NAME = "Player";
     public const string MAIN_OBJ_NAME = "MainObjs";
     public const string OBSTACLES_OBJ_NAME = "ObstaclesPools";
-
+    public const string BGPOOL_OBJ_NAME = "Bg_Pool";
 
     public const string TITLE_SCENE_NAME = "01.Title";
     public const string PLAY_SCENE_NAME = "02.PlayGame_Easy";

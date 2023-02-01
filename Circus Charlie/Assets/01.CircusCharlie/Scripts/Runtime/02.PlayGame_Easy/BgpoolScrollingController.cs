@@ -32,13 +32,14 @@ public class BgpoolScrollingController : MonoBehaviour
         {
             // 배경을 움직이는 로직 ( 왼쪽
             backGroundPool.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
-            //fireHoopObjRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+            //obstaclesRect.anchoredPosition -= Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+            //Debug.Log(obstaclesRect.anchoredPosition);
         }
         else if (backGroundRight || Input.GetKey(KeyCode.D))
         {
             // 배경을 움직이는 로직 ( 오른쪽
             backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
-            //obstaclesRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            //obstaclesRect.anchoredPosition -= Vector2.left * Time.deltaTime * backGroundMoveSpeed;
 
         }
 
@@ -66,6 +67,18 @@ public class BgpoolScrollingController : MonoBehaviour
     public void KeyUPRight()
     {
         backGroundRight = false;
+    }
+
+    // 왼쪽 bool 동기화
+    public void SyncMoveLeft(ref bool SyncLeft)
+    {
+        SyncLeft = backGroundLeft;
+    }
+
+    // 오른쪽 bool 동기화
+    public void SyncMoveRight(ref bool SyncRight)
+    {
+        SyncRight = backGroundRight;
     }
 
 }

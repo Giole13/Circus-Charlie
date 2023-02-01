@@ -6,6 +6,7 @@ public class ObstaclesPoolingController : MonoBehaviour
 {
     public float hoopSpeed = 1f;
     public float hoopCreateTime = 3f;
+    public float hoopMoveSpeed = 1f;
 
     public List<GameObject> hoopPoolList = default;
 
@@ -15,6 +16,11 @@ public class ObstaclesPoolingController : MonoBehaviour
     private const string SHORT_HOOP_NAME = "FireHoopShort";
     private const string LONG_HOOP_NAME = "FireHoopLong";
 
+    private BgpoolScrollingController bgPoolObjScript = default;
+
+    public bool isSyncMoveLeft = false;
+    public bool isSyncMoveRight = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +29,16 @@ public class ObstaclesPoolingController : MonoBehaviour
         GameObject longHoopObj = GioleFunc.FindChildObj(gameObject, LONG_HOOP_NAME);
         ObstaclesRect = gameObject.GetComponent<RectTransform>();
 
+        //bgPoolObjScript = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME).FindChildObj(GioleData.BGPOOL_OBJ_NAME).
+        //    GetComponent<BgpoolScrollingController>();
+            
+        //hoopMoveSpeed = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME).FindChildObj(GioleData.BGPOOL_OBJ_NAME).
+        //    GetComponent<BgpoolScrollingController>().backGroundMoveSpeed;
 
         // 인스턴스 해서 풀에다가 넣어주기!
         for (int i = 0; i < 3; ++i)
         {
+            Debug.Log("인스텐티에이트");
             GameObject shorthoop_ = Instantiate(shortHoopObj, gameObject.transform);
             shorthoop_.name = SHORT_HOOP_NAME + "_" + i;
             hoopPoolList.Add(shorthoop_);
@@ -43,7 +55,8 @@ public class ObstaclesPoolingController : MonoBehaviour
         shortHoopObj.SetActive(false);
         longHoopObj.SetActive(false);
 
-
+        //bgPoolObjScript.SyncMoveLeft(ref isSyncMoveLeft);
+        //bgPoolObjScript.SyncMoveRight(ref isSyncMoveRight);
     }
 
     // Update is called once per frame

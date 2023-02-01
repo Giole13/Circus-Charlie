@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         gameOver = true;
         //playerRigid2D.velocity = Vector2.zero;
         Debug.Log("사망했습니다!");
-        Time.timeScale = 0;
+        Time.timeScale = 0f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

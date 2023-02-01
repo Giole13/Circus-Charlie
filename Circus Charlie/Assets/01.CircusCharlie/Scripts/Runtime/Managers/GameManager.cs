@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.R))
             {
                 GioleFunc.LoadScene(GioleData.PLAY_SCENE_NAME);
+                Time.timeScale = 1f;
+
             }
         }
     }
