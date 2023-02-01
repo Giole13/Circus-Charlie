@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireHoopController : BgpoolScrollingController
+public class FireHoopController : MonoBehaviour
 {
     private RectTransform fireHoopObjRect = default;
     private RectTransform playerRectTransform = default;
@@ -23,6 +23,7 @@ public class FireHoopController : BgpoolScrollingController
         moveSpeed = transform.parent.GetComponent<ObstaclesPoolingController>().
             hoopSpeed;
         
+        // 자신의 렉트 트랜스폼
         fireHoopObjRect = GetComponent<RectTransform>();
 
 
@@ -39,25 +40,17 @@ public class FireHoopController : BgpoolScrollingController
         // 후프의 가속도를 가하는 로직
         fireHoopObjRect.anchoredPosition += Vector2.left * moveSpeed * Time.deltaTime;
 
-        //if (backGroundLeft || Input.GetKey(KeyCode.A))
-        //{
-        //    fireHoopObjRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
-        //}
-        //else if (backGroundRight || Input.GetKey(KeyCode.D))
-        //{
-        //    fireHoopObjRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
-        //}
-
-
-
-
-
 
         // 후프의 위치를 초기화하고 꺼주는 로직
+        // 자신의 렉트 트랜스폼X의 위치가 
         if (fireHoopObjRect.anchoredPosition.x < -800f)
         {
-            playerRectTransform.anchoredPosition = parentFireHoopObjRect.anchoredPosition +
-                (Vector2.right * 800f);
+
+            //fireHoopObjRect.anchoredPosition =
+            //    playerRectTransform.anchoredPosition + (Vector2.right * 800f);
+            //playerRectTransform.anchoredPosition = parentFireHoopObjRect.anchoredPosition +
+            //    (Vector2.right * 800f);
+
             // 플레이어 렉트 트랜스폼 가져와서 그 위치에 +준 자리에 초기화
 
             gameObject.SetActive(false);

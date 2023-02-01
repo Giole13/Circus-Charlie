@@ -11,7 +11,7 @@ public class ObstaclesPoolingController : MonoBehaviour
 
     private float createTime = 0;
 
-
+    private RectTransform ObstaclesRect = default;
     private const string SHORT_HOOP_NAME = "FireHoopShort";
     private const string LONG_HOOP_NAME = "FireHoopLong";
 
@@ -21,7 +21,7 @@ public class ObstaclesPoolingController : MonoBehaviour
         // 오브젝트 풀링할 친구들 가져오기
         GameObject shortHoopObj = GioleFunc.FindChildObj(gameObject, SHORT_HOOP_NAME);
         GameObject longHoopObj = GioleFunc.FindChildObj(gameObject, LONG_HOOP_NAME);
-
+        ObstaclesRect = gameObject.GetComponent<RectTransform>();
 
 
         // 인스턴스 해서 풀에다가 넣어주기!
@@ -50,6 +50,7 @@ public class ObstaclesPoolingController : MonoBehaviour
     void Update()
     {
         createTime += Time.deltaTime;
+        ObstaclesRect.anchoredPosition = Vector2.zero;
 
         // 랜덤으로 시간마다 후프를 켜주는 함수
         if (hoopCreateTime < createTime)
