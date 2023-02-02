@@ -50,6 +50,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 33e7d418828f28c4090892120aad7942, type: 2}
   - {fileID: 21300000, guid: d499e7729fa136140bc7002ca6f1b2a6, type: 2}
   - {fileID: 21300000, guid: b9dc7a0cc33cc9e4f9383a2aadce0fb1, type: 2}
   - {fileID: 21300000, guid: 0d28098b9c840bf4b9da003aec68235f, type: 2}
@@ -57,6 +58,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0183dd934b1ef9443af6cf78ba958d0d, type: 2}
   - {fileID: 21300000, guid: 30cc4251423b87a47bbd097536376f3e, type: 2}
   - {fileID: 21300000, guid: bdcfdd086c938434ca459f9ada5759e1, type: 2}
+  - {fileID: 21300000, guid: a397b70e045ba884096c1f8d887f63db, type: 2}
   - {fileID: 21300000, guid: 6b1092314e5991144a362ab3d503cdf5, type: 2}
   - {fileID: 21300000, guid: 40e7c73cc4acb45499888e6443b417ac, type: 2}
   - {fileID: 21300000, guid: 403d0496543ba004f808c32c4330e5df, type: 2}
@@ -64,6 +66,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c757359f5d95a014792646f3e8b00a64, type: 2}
   - {fileID: 21300000, guid: d31e204724a22cc4b90c19537d501e9f, type: 2}
   m_PackedSpriteNamesToIndex:
+  - CircusCharlie_Player_Goal_2
   - CircusCharlie_LionDie
   - CircusCharlie_FireJar_2
   - CircusCharlie_FireJar_1
@@ -71,6 +74,7 @@ SpriteAtlas:
   - CircusCharlie_FireHoop_Short_1
   - CircusCharlie_FireHoop_Long_2
   - CircusCharlie_FireHoop_Long_1
+  - CircusCharlie_Player_Gola_1
   - CircusCharlie_Goal_Stage
   - CircusCharlie_LionJump
   - CircusCharlie_LionRun1

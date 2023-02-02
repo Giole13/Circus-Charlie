@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4241021221838024027}
   - component: {fileID: 4241021221838024024}
   - component: {fileID: 7054546457577080035}
+  - component: {fileID: 8104489473379319821}
   m_Layer: 5
   m_Name: FireHoopShort
   m_TagString: Obstacle
@@ -140,6 +141,26 @@ Canvas:
   m_SortingLayerID: 997051247
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!95 &8104489473379319821
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4241021221838024031}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 83cc88cab23a0ec498fa6f1d641c1656, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &8830192612485426917
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +216,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8830192612485426917}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

@@ -17,6 +17,9 @@ public class BgpoolScrollingController : MonoBehaviour
     private RectTransform playerObjRect = default;
     private PlayerController playerScript = default;
 
+    private Animator playerAnimator = default;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,8 @@ public class BgpoolScrollingController : MonoBehaviour
         GameObject playerObj = main.FindChildObj(GioleData.PLAYER_OBJ_NAME);
         playerObjRect = playerObj.GetRect();
         playerScript = playerObj.GetComponent<PlayerController>();
+
+        playerAnimator = playerObj.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,8 +43,12 @@ public class BgpoolScrollingController : MonoBehaviour
 
         if (isGroundTouch)
         {
+            
+            // ¿ÞÂÊ Å° ´­·¶À» ¶§
             if (backGroundLeft || Input.GetKey(KeyCode.A))
             {
+                playerAnimator.SetBool("backMove", isGroundTouch);
+
                 if (backGroundPool.anchoredPosition.x > 0f || playerObjRect.anchoredPosition.x > -233f)
                 {
                     // BG_PoolÀÇ 
@@ -53,8 +62,11 @@ public class BgpoolScrollingController : MonoBehaviour
                     //Debug.Log(obstaclesRect.anchoredPosition);
                 }
             }
+            // ¿À¸¥ÂÊ Å° ´­·¶À» ¶§
             else if (backGroundRight || Input.GetKey(KeyCode.D))
             {
+                playerAnimator.SetBool("Idle", !isGroundTouch);
+
                 if (backGroundPool.anchoredPosition.x < -11511.53f || playerObjRect.anchoredPosition.x < -233f)
                 {
                     if (backGroundPool.anchoredPosition.x < -11511.53f) { ObstacleScript.MakerController(); }
@@ -68,6 +80,13 @@ public class BgpoolScrollingController : MonoBehaviour
                     //obstaclesRect.anchoredPosition -= Vector2.left * Time.deltaTime * backGroundMoveSpeed;
                 }
             }
+            else
+            {
+                playerAnimator.SetBool("Idle", true);
+                playerAnimator.SetBool("backMove", false);
+            }
+
+
         }       // if: ¶¥¿¡ ´ê¾ÆÀÖÀ»¶§ ¸¸ ÀÛµ¿
         else
         {

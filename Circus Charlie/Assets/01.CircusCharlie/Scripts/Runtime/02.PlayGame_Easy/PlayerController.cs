@@ -14,11 +14,16 @@ public class PlayerController : MonoBehaviour
 
 
     private GameObject ScoreNumObj = default;
+    private GameObject BestNumObj = default;
+
     private RectTransform playerRect = default;
     private bool backGroundLeft = false;
     private bool backGroundRight = false;
 
     private int currentScore = 0;
+    private int bestScore = 0;
+
+    private Animator playerAnimator = default;
 
     // Start is called before the first frame update
     void Start()
@@ -27,20 +32,35 @@ public class PlayerController : MonoBehaviour
         playerRect = gameObject.GetComponent<RectTransform>();
         //_playerRigid2D.AddForce(new Vector2(0, 1000));
 
-        ScoreNumObj = GioleFunc.GetRootObj("UIObjs").FindChildObj("ScoreNum");
+        ScoreNumObj = GioleFunc.GetRootObj("UIObjs").FindChildObj("CurrentScore").
+            FindChildObj("ScoreNum");
+        BestNumObj = GioleFunc.GetRootObj("UIObjs").FindChildObj("HighScore").
+            FindChildObj("ScoreNum");
         Debug.Log(ScoreNumObj.name);
-        currentScore = 0;
+        playerAnimator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        bestScore = PlayerPrefs.GetInt("BestScore");
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             OnClickJump();
         }
 
-        
+
+        if (bestScore <= currentScore)
+        {
+            bestScore = currentScore;
+            PlayerPrefs.SetInt("BestScore", bestScore);
+        }
+
+
+        BestNumObj.SetTmpText($"{bestScore}");
+
     }
 
 
@@ -59,12 +79,14 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isGroundTouch = true;
+        playerAnimator.SetBool("Ground", isGroundTouch);
     }
 
     //! 땅에서 떨어졌을 때는 점프 불가능
     private void OnCollisionExit2D(Collision2D collision)
     {
         isGroundTouch = false;
+        playerAnimator.SetBool("Ground", isGroundTouch);
     }
 
     //! 플레이어가 죽는 함수
@@ -74,6 +96,8 @@ public class PlayerController : MonoBehaviour
         //playerRigid2D.velocity = Vector2.zero;
         Debug.Log("사망했습니다!");
         Time.timeScale = 0f;
+        playerAnimator.SetBool("Die", true);
+
     }
 
     // 무언가와 충돌했을 때
@@ -99,6 +123,7 @@ public class PlayerController : MonoBehaviour
         {
             // 점수 증가!
             currentScore += 100;
+
             ScoreNumObj.SetTmpText($"{currentScore}");
             Debug.Log("점수가 증가되었습니다!");
 
