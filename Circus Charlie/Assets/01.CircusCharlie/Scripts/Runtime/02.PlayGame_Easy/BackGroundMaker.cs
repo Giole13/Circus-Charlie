@@ -31,6 +31,14 @@ public class BackGroundMaker : MonoBehaviour
         for (int i = 0; i < 10; ++i)
         {
             allBG = Instantiate(backGround, gameObject.transform);
+            if(i == 0 || i == 9)
+            {
+                allBG.GetComponent<BoxCollider2D>().enabled = true;
+                if(i == 0)
+                {
+                    allBG.FindChildObj("FireJar").SetActive(false);
+                }
+            }
 
             allBG.FindChildObj("RemainingMeters").SetTmpText($"{remainingMeter}0 M");
             allBG.name = backGround.name + i;
@@ -42,10 +50,11 @@ public class BackGroundMaker : MonoBehaviour
 
 
         // 골인 프리팹 불러와서 위치시켜주는 로직
+        // 여기다가 마지막 맵이라는 박스 콜라이더 추가 예정
         GameObject prefab = Resources.Load<GameObject>("Prefabs/GoalStage");
         GameObject goalStage = Instantiate(prefab, allBG.transform);
         goalStage.SetLocalPos(350f, -170f, 0);
-
+        
 
 
 

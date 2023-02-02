@@ -8,45 +8,49 @@ public class ObstaclesPoolingController : MonoBehaviour
     public float hoopCreateTime = 3f;
     public float hoopMoveSpeed = 1f;
 
+    public GameObject bgPoolObj = default;
+
     public List<GameObject> hoopPoolList = default;
 
     private float createTime = 0;
 
     private RectTransform ObstaclesRect = default;
+    private RectTransform bgPoolObjRect = default;
     private const string SHORT_HOOP_NAME = "FireHoopShort";
     private const string LONG_HOOP_NAME = "FireHoopLong";
 
     private BgpoolScrollingController bgPoolObjScript = default;
 
-    public bool isSyncMoveLeft = false;
-    public bool isSyncMoveRight = false;
+    public bool makerEnabled = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        // ø¿∫Í¡ß∆Æ «Æ∏µ«“ ƒ£±∏µÈ ∞°¡Æø¿±‚
+        // Ïò§Î∏åÏ†ùÌä∏ ÌíÄÎßÅÌï† ÏπúÍµ¨Îì§ Í∞ÄÏ†∏Ïò§Í∏∞
         GameObject shortHoopObj = GioleFunc.FindChildObj(gameObject, SHORT_HOOP_NAME);
         GameObject longHoopObj = GioleFunc.FindChildObj(gameObject, LONG_HOOP_NAME);
         ObstaclesRect = gameObject.GetComponent<RectTransform>();
 
-        //bgPoolObjScript = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME).FindChildObj(GioleData.BGPOOL_OBJ_NAME).
-        //    GetComponent<BgpoolScrollingController>();
-            
-        //hoopMoveSpeed = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME).FindChildObj(GioleData.BGPOOL_OBJ_NAME).
-        //    GetComponent<BgpoolScrollingController>().backGroundMoveSpeed;
+        bgPoolObjRect = bgPoolObj.GetComponent<RectTransform>();
 
-        // ¿ŒΩ∫≈œΩ∫ «ÿº≠ «Æø°¥Ÿ∞° ≥÷æÓ¡÷±‚!
+
+        bgPoolObjScript = bgPoolObj.GetComponent<BgpoolScrollingController>();
+
+        hoopMoveSpeed = bgPoolObjScript.backGroundMoveSpeed;
+
+        // Ïù∏Ïä§ÌÑ¥Ïä§ Ìï¥ÏÑú ÌíÄÏóêÎã§Í∞Ä ÎÑ£Ïñ¥Ï£ºÍ∏∞!
         for (int i = 0; i < 3; ++i)
         {
-            Debug.Log("¿ŒΩ∫≈Ÿ∆ºø°¿Ã∆Æ");
-            GameObject shorthoop_ = Instantiate(shortHoopObj, gameObject.transform);
+            // bgPoolÏóêÎã§Í∞Ä ÎÑ£Ïñ¥Ï£ºÍ∏∞
+            GameObject shorthoop_ = Instantiate(shortHoopObj, bgPoolObj.transform);
             shorthoop_.name = SHORT_HOOP_NAME + "_" + i;
             hoopPoolList.Add(shorthoop_);
             shorthoop_.SetActive(false);
         }
         for (int i = 3; i < 6; ++i)
         {
-            GameObject longhoop_ = Instantiate(longHoopObj, gameObject.transform);
+            // bgPoolÏóêÎã§Í∞Ä ÎÑ£Ïñ¥Ï£ºÍ∏∞
+            GameObject longhoop_ = Instantiate(longHoopObj, bgPoolObj.transform);
             longhoop_.name = LONG_HOOP_NAME + "_" + i;
             hoopPoolList.Add(longhoop_);
             longhoop_.SetActive(false);
@@ -62,19 +66,52 @@ public class ObstaclesPoolingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ObstaclesRect.anchoredPosition = Vector2.zero;
-        createTime += Time.deltaTime;
+        //ObstaclesRect.anchoredPosition = uiRect.anchoredPosition;
 
-        // ∑£¥˝¿∏∑Œ Ω√∞£∏∂¥Ÿ »ƒ«¡∏¶ ƒ—¡÷¥¬ «‘ºˆ
-        if (hoopCreateTime < createTime)
+
+        //if (Input.GetKey(KeyCode.D))
+        //{
+        //    // ÎßåÏïΩ Î∞©Ìñ•ÌÇ§Î•º ÎàåÎ†ÄÏùÑ Îïå Í∞ÄÏÜçÎèÑÍ∞Ä ÎçîÌï¥ÏßÑÎã§Î©¥?
+        //    ObstaclesRect.anchoredPosition += Vector2.left * Time.deltaTime * hoopMoveSpeed;
+        //}
+        //else
+        //{
+        //}
+
+
+
+        if (makerEnabled)
         {
-            int i = Random.RandomRange(0, 6);
 
-            hoopPoolList[i].SetActive(true);
+            ObstaclesRect.anchoredPosition = Vector2.zero;
 
-            createTime = 0f;
+            createTime += Time.deltaTime;
+
+            // ÎûúÎç§ÏúºÎ°ú ÏãúÍ∞ÑÎßàÎã§ ÌõÑÌîÑÎ•º ÏºúÏ£ºÎäî Î°úÏßÅ
+            if (hoopCreateTime < createTime)
+            {
+                int i = Random.RandomRange(0, 6);
+                if (hoopPoolList[i].activeSelf == true)
+                {
+                    /* Do nothing */
+                }
+                else
+                {
+                    //ÌîåÎ†àÏù¥Ïñ¥ ÏïûÏóêÎã§Í∞Ä ÏúÑÏπò ÏãúÏºúÏ£ºÍ∏∞
+                    hoopPoolList[i].GetRect().anchoredPosition =
+                        //BgPOolÏùò Ï†àÎåÄÍ∞íÏúºÎ°ú Ïò¨Î†§Ï§òÏïºÍ≤†ÏßÄÏöî?
+                        new Vector2(Mathf.Abs(bgPoolObjRect.anchoredPosition.x) + 800f,
+                        hoopPoolList[i].GetComponent<RectTransform>().anchoredPosition.y);
+                    hoopPoolList[i].SetActive(true);
+                }
+                createTime = 0f;
+            }
+
         }
+    }       // Update()
 
-        
+    public void MakerController()
+    {
+        makerEnabled = false;
     }
 }
