@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     private int bestScore = 0;
 
     private Animator playerAnimator = default;
+    private GameObject bonusScore = default;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +38,10 @@ public class PlayerController : MonoBehaviour
             FindChildObj("ScoreNum");
         BestNumObj = GioleFunc.GetRootObj("UIObjs").FindChildObj("HighScore").
             FindChildObj("ScoreNum");
-        Debug.Log(ScoreNumObj.name);
+        //Debug.Log(ScoreNumObj.name);
         playerAnimator = GetComponent<Animator>();
+        bonusScore = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME)
+            .FindChildObject("Score");
 
     }
 
@@ -116,6 +120,30 @@ public class PlayerController : MonoBehaviour
         {
             Die();
         }
+
+        if (collision.name == "BonusScore")
+        {
+            // 여기는 코루틴 사용
+            //bonusScore.SetActive(true);
+            //bonusScore.GetComponent<RectTransform>().anchoredPosition =
+            //    playerRect.anchoredPosition + new Vector2(0f, 140f);  
+            StartCoroutine(BonusScorePopup());
+
+
+            Debug.Log("보너스 스코어!@");
+            collision.gameObject.SetActive(false);
+        }
+    }
+
+    IEnumerator BonusScorePopup()
+    {
+        bonusScore.SetActive(true);
+        bonusScore.GetComponent<RectTransform>().anchoredPosition =
+            playerRect.anchoredPosition + new Vector2(0f, 140f);
+        yield return new WaitForSecondsRealtime(1f);
+        bonusScore.SetActive(false);
+        
+        
     }
 
 
@@ -126,12 +154,14 @@ public class PlayerController : MonoBehaviour
         {
             // 점수 증가!
             currentScore += 100;
-
             ScoreNumObj.SetTmpText($"{currentScore}");
             Debug.Log("점수가 증가되었습니다!");
-
         }
+
     }
+
+
+    
 
     //private void OnCollisionStay(Collision collision)
     //{

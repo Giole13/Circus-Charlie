@@ -22,6 +22,8 @@ public class ObstaclesPoolingController : MonoBehaviour
     private const string SHORT_HOOP_NAME = "FireHoopShort";
     private const string LONG_HOOP_NAME = "FireHoopLong";
 
+    private GameObject bonusScore = default;
+
     private BgpoolScrollingController bgPoolObjScript = default;
 
     public bool makerEnabled = true;
@@ -37,7 +39,7 @@ public class ObstaclesPoolingController : MonoBehaviour
         FrontObstaclesObj = GioleFunc.GetRootObj("FrontObstacles").
             FindChildObj("ObstaclesFools");
 
-
+        
 
         bgPoolObjRect = bgPoolObj.GetComponent<RectTransform>();
 
@@ -98,6 +100,7 @@ public class ObstaclesPoolingController : MonoBehaviour
             if (hoopCreateTime < createTime)
             {
                 int i = Random.RandomRange(0, 6);
+                int bonusScoreRand = Random.RandomRange(0, 6);
                 if (hoopPoolList[i].activeSelf == true)
                 {
                     /* Do nothing */
@@ -110,6 +113,13 @@ public class ObstaclesPoolingController : MonoBehaviour
                         new Vector2(Mathf.Abs(bgPoolObjRect.anchoredPosition.x) + 800f,
                         hoopPoolList[i].GetComponent<RectTransform>().anchoredPosition.y);
                     hoopPoolList[i].SetActive(true);
+
+                    if (bonusScoreRand < 1)
+                    {
+                        bonusScore = hoopPoolList[i].FindChildObject("BonusScore");
+                        bonusScore.SetActive(true);
+
+                    }
                 }
                 createTime = 0f;
             }

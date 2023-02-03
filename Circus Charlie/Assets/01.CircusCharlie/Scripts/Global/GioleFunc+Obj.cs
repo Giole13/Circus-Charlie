@@ -15,10 +15,11 @@ public static partial class GioleFunc
         //Debug.Log(searchTarget);
         //Debug.Log(searchResult);
 
-        if(targetObj_.transform.childCount == 0)
-        {
-            return targetObj_;
-        }
+        //if(targetObj_.transform.childCount == 0)
+        //{
+        //    Debug.Log(targetObj_)
+        //    return targetObj_;
+        //}
 
         for (int i = 0; i < targetObj_.transform.childCount; i++)
         {
@@ -32,6 +33,14 @@ public static partial class GioleFunc
             else
             {
                 resultObj = searchTarget.FindChildObj(objName_);
+                if (resultObj == null || resultObj == default)
+                {
+                    /* Pass */
+                }
+                else
+                {
+                    return resultObj;
+                }
             }
 
             //Debug.Log(resultObj);
@@ -43,15 +52,39 @@ public static partial class GioleFunc
 
 
         // 방어로직
-        if (resultObj == null || resultObj == default)
-        {
-            /* Pass */
-        }
-        else
-        {
-            return resultObj;
-        }
         //Debug.Log(searchResult);
+        return resultObj;
+    }
+
+
+    public static GameObject FindChildObject(this GameObject mainObj_,
+        string targetObjName_)
+    {
+        GameObject resultObj = default;
+
+        // 목표 오브젝트를 찾는 함수
+        //if(mainObj_.transform.child)
+        foreach (Transform obj_ in mainObj_.transform)
+        {
+            if (obj_.name.Equals(targetObjName_))
+            {
+                //Debug.Log(obj_.name + "여기는 새로 만든 함수");
+                return obj_.gameObject;
+            }
+            else
+            {
+                resultObj = obj_.gameObject.
+                    FindChildObject(targetObjName_);
+                //Debug.Log(resultObj + "여기는 어떰?");
+
+                if (resultObj != null && resultObj != default)
+                {
+                    return resultObj;
+                }
+            }
+        }
+
+        //Debug.Log(resultObj.name + "여기는 반환하는 오브젝트 이름");
         return resultObj;
     }
 
@@ -96,7 +129,7 @@ public static partial class GioleFunc
     {
         obj_.GetRect().anchoredPosition += position2D;
     }
-    
+
 
     //! 컴포넌트 가져오는 함수
     public static SomeType GetComponentMust<SomeType>(this GameObject obj)

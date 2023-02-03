@@ -63,6 +63,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 40e7c73cc4acb45499888e6443b417ac, type: 2}
   - {fileID: 21300000, guid: 403d0496543ba004f808c32c4330e5df, type: 2}
   - {fileID: 21300000, guid: 86349fdd7ba4d05438afbbb846933aa2, type: 2}
+  - {fileID: 21300000, guid: 2f7caa4a7db986a4095d5ad3321b4d8c, type: 2}
   - {fileID: 21300000, guid: c757359f5d95a014792646f3e8b00a64, type: 2}
   - {fileID: 21300000, guid: d31e204724a22cc4b90c19537d501e9f, type: 2}
   m_PackedSpriteNamesToIndex:
@@ -79,6 +80,7 @@ SpriteAtlas:
   - CircusCharlie_LionJump
   - CircusCharlie_LionRun1
   - CircusCharlie_LionRun2
+  - CircusCharlie_Bonus_Score
   - CircusCharlie_PlayerRun1
   - CircusCharlie_PlayerRun2
   m_RenderDataMap: {}
