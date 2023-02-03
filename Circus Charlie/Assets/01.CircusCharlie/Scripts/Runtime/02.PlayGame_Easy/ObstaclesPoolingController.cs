@@ -10,6 +10,9 @@ public class ObstaclesPoolingController : MonoBehaviour
 
     public GameObject bgPoolObj = default;
 
+
+    private GameObject FrontObstaclesObj = default;
+
     public List<GameObject> hoopPoolList = default;
 
     private float createTime = 0;
@@ -31,8 +34,12 @@ public class ObstaclesPoolingController : MonoBehaviour
         GameObject longHoopObj = GioleFunc.FindChildObj(gameObject, LONG_HOOP_NAME);
         ObstaclesRect = gameObject.GetComponent<RectTransform>();
 
-        bgPoolObjRect = bgPoolObj.GetComponent<RectTransform>();
+        FrontObstaclesObj = GioleFunc.GetRootObj("FrontObstacles").
+            FindChildObj("ObstaclesFools");
 
+
+
+        bgPoolObjRect = bgPoolObj.GetComponent<RectTransform>();
 
         bgPoolObjScript = bgPoolObj.GetComponent<BgpoolScrollingController>();
 
@@ -42,7 +49,7 @@ public class ObstaclesPoolingController : MonoBehaviour
         for (int i = 0; i < 3; ++i)
         {
             // bgPool에다가 넣어주기
-            GameObject shorthoop_ = Instantiate(shortHoopObj, bgPoolObj.transform);
+            GameObject shorthoop_ = Instantiate(shortHoopObj, FrontObstaclesObj.transform);
             shorthoop_.name = SHORT_HOOP_NAME + "_" + i;
             hoopPoolList.Add(shorthoop_);
             shorthoop_.SetActive(false);
@@ -50,7 +57,7 @@ public class ObstaclesPoolingController : MonoBehaviour
         for (int i = 3; i < 6; ++i)
         {
             // bgPool에다가 넣어주기
-            GameObject longhoop_ = Instantiate(longHoopObj, bgPoolObj.transform);
+            GameObject longhoop_ = Instantiate(longHoopObj, FrontObstaclesObj.transform);
             longhoop_.name = LONG_HOOP_NAME + "_" + i;
             hoopPoolList.Add(longhoop_);
             longhoop_.SetActive(false);
@@ -110,6 +117,8 @@ public class ObstaclesPoolingController : MonoBehaviour
         }
     }       // Update()
 
+
+    //! 불고리 생성 중단 함수
     public void MakerController()
     {
         makerEnabled = false;

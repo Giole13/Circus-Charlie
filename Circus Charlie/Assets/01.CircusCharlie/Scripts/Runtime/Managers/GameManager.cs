@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private PlayerController player = default;
+    //private PlayerController player = default;
 
     
     
@@ -13,22 +13,41 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject playerOBJ = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME);
-        player = playerOBJ.FindChildObj(GioleData.PLAYER_OBJ_NAME).
-            GetComponent<PlayerController>();
+        //GameObject playerOBJ = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME);
+        //player = playerOBJ.FindChildObj(GioleData.PLAYER_OBJ_NAME).
+        //    GetComponent<PlayerController>();
+
+        //Screen.SetResolution(1280, 720, true);
+        SetResolution(); // 초기에 게임 해상도 고정
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player.gameOver)
-        {
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                GioleFunc.LoadScene(GioleData.PLAY_SCENE_NAME);
-                Time.timeScale = 1f;
+        
+    }
 
-            }
+
+    /* 해상도 설정하는 함수 */
+    public void SetResolution()
+    {
+        int setWidth = 1280; // 사용자 설정 너비
+        int setHeight = 720; // 사용자 설정 높이
+
+        int deviceWidth = Screen.width; // 기기 너비 저장
+        int deviceHeight = Screen.height; // 기기 높이 저장
+
+        Screen.SetResolution(setWidth, (int)(((float)deviceHeight / deviceWidth) * setWidth), true); // SetResolution 함수 제대로 사용하기
+
+        if ((float)setWidth / setHeight < (float)deviceWidth / deviceHeight) // 기기의 해상도 비가 더 큰 경우
+        {
+            float newWidth = ((float)setWidth / setHeight) / ((float)deviceWidth / deviceHeight); // 새로운 너비
+            Camera.main.rect = new Rect((1f - newWidth) / 2f, 0f, newWidth, 1f); // 새로운 Rect 적용
+        }
+        else // 게임의 해상도 비가 더 큰 경우
+        {
+            float newHeight = ((float)deviceWidth / deviceHeight) / ((float)setWidth / setHeight); // 새로운 높이
+            Camera.main.rect = new Rect(0f, (1f - newHeight) / 2f, 1f, newHeight); // 새로운 Rect 적용
         }
     }
 }

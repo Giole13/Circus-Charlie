@@ -71,8 +71,11 @@ public class PlayerController : MonoBehaviour
             playerRigid2D.AddForce(new Vector2(0, jumpPower));
         }
 
-
-
+        if (gameOver)
+        {
+            GioleFunc.LoadScene(GioleData.PLAY_SCENE_NAME);
+            Time.timeScale = 1f;
+        }
     }
 
     //! 땅에 닿았을 때 점프 가능
@@ -103,11 +106,11 @@ public class PlayerController : MonoBehaviour
     // 무언가와 충돌했을 때
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "BackGround")
-        {
-            //Debug.Log("여긴 백그라운드!");
+        //if (collision.transform.tag == "BackGround")
+        //{
+        //    //Debug.Log("여긴 백그라운드!");
 
-        }
+        //}
 
         if (collision.transform.tag == "Obstacle")
         {
@@ -130,30 +133,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    ////! 왼쪽 방향키 눌렀을 때
-    //public void KeyDownLeft()
+    //private void OnCollisionStay(Collision collision)
     //{
-    //    backGroundLeft = true;
-    //}
+    //    if (collision.transform.tag == "Goal")
+    //    {
+    //        // 여기서 다음 스태이지로 넘어가는 구문 짜주기
+    //        Debug.Log("오 도착해썽요! ");
 
-    ////! 왼쪽 방향키 놓았을 때
-    //public void KeyUPLeft()
-    //{
-    //    backGroundLeft = false;
+    //        playerAnimator.SetBool("PlayerGoal", true);
+    //        //playerAnimator.SetBool("Ground", isGroundTouch);
+    //    }
     //}
-
-    ////! 오른쪽 방향키 눌렀을 때
-    //public void KeyDownRight()
-    //{
-    //    backGroundRight = true;
-    //}
-
-    ////! 오른쪽 방향키 놓았을 때
-    //public void KeyUPRight()
-    //{
-    //    backGroundRight = false;
-    //}
-
 
 }

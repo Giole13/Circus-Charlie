@@ -24,18 +24,17 @@ public class GoalStageObject : MonoBehaviour
         
     }
 
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Player")
         {
             // 여기서 다음 스태이지로 넘어가는 구문 짜주기
             Debug.Log("오 도착해썽요! ");
 
             playerAnimator.SetBool("PlayerGoal", true);
             //playerAnimator.SetBool("Ground", isGroundTouch);
-
         }
+        
     }
 
 }

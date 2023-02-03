@@ -5,6 +5,8 @@ using UnityEngine;
 public class BgpoolScrollingController : MonoBehaviour
 {
     public float backGroundMoveSpeed = 10f;
+    public bool isObstaclesFools = false;
+
 
     protected bool backGroundLeft = false;
     protected bool backGroundRight = false;
@@ -19,6 +21,7 @@ public class BgpoolScrollingController : MonoBehaviour
 
     private Animator playerAnimator = default;
 
+    private bool isleftJump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +43,10 @@ public class BgpoolScrollingController : MonoBehaviour
     {
         isGroundTouch = playerScript.isGroundTouch;
 
-
+        // 배경 전용
         if (isGroundTouch)
         {
-            
+
             // 왼쪽 키 눌렀을 때
             if (backGroundLeft || Input.GetKey(KeyCode.A))
             {
@@ -89,19 +92,44 @@ public class BgpoolScrollingController : MonoBehaviour
 
         }       // if: 땅에 닿아있을때 만 작동
         else
-        {
-            //if (backGroundLeft) // 왼쪽방향키를 누른 경우라면
+        {       //! 점프할때 적용
+            //if (backGroundLeft)
+            //{
+            //    // BG_Pool의 
+            //    playerObjRect.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            //}
+            //else if (isleftJump)
             //{
             //    backGroundPool.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+
             //}
-            //else if (backGroundLeft == false)
-            //{
-            //기본은 뒤로 가있는걸로 설정하고 
-            //backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
-            //}
-            backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            if (backGroundPool.anchoredPosition.x < -11511.53f || playerObjRect.anchoredPosition.x < -233f)
+            {
+                // BG_Pool의 
+                playerObjRect.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+            }
+            else
+            {
+                // 배경을 움직이는 로직 ( 오른쪽
+                backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+                //obstaclesRect.anchoredPosition -= Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+            }
 
         }
+
+
+        // 장애물 전용  ( 내 오브젝트 이름이 ObstaclesFools 일 경우
+        //if (isObstaclesFools)
+        //{
+        //    if (backGroundLeft || Input.GetKey(KeyCode.A))
+        //    {
+        //        backGroundPool.anchoredPosition += Vector2.right * Time.deltaTime * backGroundMoveSpeed;
+        //    }
+        //    else if (backGroundRight || Input.GetKey(KeyCode.D))
+        //    {
+        //        backGroundPool.anchoredPosition += Vector2.left * Time.deltaTime * backGroundMoveSpeed;
+        //    }
+        //}
 
 
 
@@ -111,6 +139,7 @@ public class BgpoolScrollingController : MonoBehaviour
     public void KeyDownLeft()
     {
         backGroundLeft = true;
+        isleftJump = true;
     }
 
     //! 왼쪽 방향키 놓았을 때

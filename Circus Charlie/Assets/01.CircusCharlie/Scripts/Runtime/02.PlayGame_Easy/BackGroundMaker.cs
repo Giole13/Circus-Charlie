@@ -14,14 +14,16 @@ public class BackGroundMaker : MonoBehaviour
     void Start()
     {
         // 화면 해상도 가져오기
-        GameObject MainObjs = GioleFunc.GetRootObj(MAIN_OBJ_NAME);
+        GameObject mainObjs = GioleFunc.GetRootObj(MAIN_OBJ_NAME);
 
         // 생성할 오브젝트 가져오기
         backGround = GioleFunc.FindChildObj(gameObject, BACK_GROUND_NAME);
 
         // 화면 해상도 사이즈 가져오기
         //Vector2 mainObjsTransform = MainObjs.GetRectSizeDelta();
-        Vector2 mainObjsRectTransform = MainObjs.GetRectSizeDelta();
+        //Vector2 mainObjsRectTransform = new Vector2((float)Screen.width, (float)Screen.height);
+        //Vector2 mainObjsRectTransform = gameObject.GetRectSizeDelta();
+        Vector2 mainObjsRectTransform = mainObjs.GetRectSizeDelta();
 
         float backGroundPositionX = 0f;
 
@@ -44,7 +46,8 @@ public class BackGroundMaker : MonoBehaviour
             allBG.name = backGround.name + i;
             allBG.SetLocalPos(backGroundPositionX, 0, 0);
 
-            backGroundPositionX += mainObjsRectTransform.x;
+            //backGroundPositionX += mainObjsRectTransform.x;
+            backGroundPositionX += 1280f;
             --remainingMeter;
         }
 
@@ -52,6 +55,7 @@ public class BackGroundMaker : MonoBehaviour
         // 골인 프리팹 불러와서 위치시켜주는 로직
         // 여기다가 마지막 맵이라는 박스 콜라이더 추가 예정
         GameObject prefab = Resources.Load<GameObject>("Prefabs/GoalStage");
+        prefab.tag = "Goal";
         GameObject goalStage = Instantiate(prefab, allBG.transform);
         goalStage.SetLocalPos(350f, -170f, 0);
         

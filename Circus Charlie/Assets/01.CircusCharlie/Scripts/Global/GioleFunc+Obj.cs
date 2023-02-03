@@ -9,39 +9,50 @@ public static partial class GioleFunc
     public static GameObject FindChildObj(
         this GameObject targetObj_, string objName_)
     {
-        GameObject searchResult = default;
+        GameObject resultObj = default;
         GameObject searchTarget = default;
 
         //Debug.Log(searchTarget);
         //Debug.Log(searchResult);
 
-        for (int i = 0; i < targetObj_.transform.childCount; ++i)
+        if(targetObj_.transform.childCount == 0)
+        {
+            return targetObj_;
+        }
+
+        for (int i = 0; i < targetObj_.transform.childCount; i++)
         {
             searchTarget = targetObj_.transform.GetChild(i).gameObject;
 
-            if (searchTarget.name == objName_)
+            if (searchTarget.name.Equals(objName_))
             {
-                searchResult = searchTarget;
-                return searchResult;
+                resultObj = searchTarget;
+                return resultObj;
             }
             else
             {
-                searchResult = searchTarget.FindChildObj(objName_);
+                resultObj = searchTarget.FindChildObj(objName_);
             }
+
+            //Debug.Log(resultObj);
+            //if (resultObj.name.Equals(objName_))
+            //{
+            //    return resultObj;
+            //}
         }
 
 
         // 방어로직
-        if (searchResult == null || searchResult == default)
+        if (resultObj == null || resultObj == default)
         {
             /* Pass */
         }
         else
         {
-            return searchResult;
+            return resultObj;
         }
         //Debug.Log(searchResult);
-        return searchResult;
+        return resultObj;
     }
 
 
