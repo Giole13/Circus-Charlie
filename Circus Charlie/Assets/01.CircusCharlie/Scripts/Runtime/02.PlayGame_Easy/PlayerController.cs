@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
         bonusScore = GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME)
             .FindChildObject("Score");
 
+        GioleFunc.GetRootObj(GioleData.MAIN_OBJ_NAME).
+            FindChildObject("Score").SetActive(false);
+
+
+
+
     }
 
     // Update is called once per frame
